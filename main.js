@@ -54,11 +54,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Buy button functionality
         li.querySelector('.buy').addEventListener('click', () => {
-            li.classList.add('bought');
-            toBuyList.removeChild(li);
-            boughtList.appendChild(li);
-            li.querySelector('.buy').style.display = 'none';
-            updateBoughtList(name, parseInt(li.querySelector('.amount').textContent));
+            if (li.classList.contains('bought')) {
+                li.classList.remove('bought');
+                li.querySelector('.buy').textContent = 'Куплено';
+                li.querySelector('.delete').style.display = 'inline-block';
+                updateRemainingList(name, parseInt(li.querySelector('.amount').textContent));
+                removeFromList(boughtList, name);
+            } else {
+                li.classList.add('bought');
+                li.querySelector('.buy').textContent = 'Не куплено';
+                li.querySelector('.delete').style.display = 'none';
+                removeFromList(remainingList, name);
+                updateBoughtList(name, parseInt(li.querySelector('.amount').textContent));
+            }
         });
 
         // Delete button functionality
