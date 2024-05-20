@@ -25,20 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const li = document.createElement('li');
         li.innerHTML = `
             <span>${name}</span>
-            <span class="amount">1</span>
             <div class="button-group">
-                <button class="increase">+</button>
                 <button class="decrease">-</button>
+                <span class="amount">1</span>
+                <button class="increase">+</button>
                 <button class="buy">Куплено</button>
                 <button class="delete">×</button>
             </div>
         `;
         toBuyList.appendChild(li);
+        updateRemainingList(name, 1);
 
         // Increase button functionality
         li.querySelector('.increase').addEventListener('click', () => {
             const amount = li.querySelector('.amount');
             amount.textContent = parseInt(amount.textContent) + 1;
+            updateRemainingList(name, parseInt(amount.textContent));
         });
 
         // Decrease button functionality
@@ -46,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const amount = li.querySelector('.amount');
             if (parseInt(amount.textContent) > 1) {
                 amount.textContent = parseInt(amount.textContent) - 1;
+                updateRemainingList(name, parseInt(amount.textContent));
             }
         });
 
@@ -55,11 +58,47 @@ document.addEventListener('DOMContentLoaded', () => {
             toBuyList.removeChild(li);
             boughtList.appendChild(li);
             li.querySelector('.buy').style.display = 'none';
+            updateBoughtList(name, parseInt(li.querySelector('.amount').textContent));
         });
 
         // Delete button functionality
         li.querySelector('.delete').addEventListener('click', () => {
+            const amount = parseInt(li.querySelector('.amount').textContent);
+            if (li.classList.contains('bought')) {
+                removeFromList(boughtList, name);
+            } else {
+                removeFromList(remainingList, name);
+            }
             li.remove();
         });
+    }
+
+    function updateRemainingList(name, amount) {
+        const existingItem = Array.from(remainingList.children).find(item => item.querySelector('span').textContent === name);
+        if (existingItem) {
+            existingItem.querySelector('.amount').textContent = amount;
+        } else {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${name}</span><span class="amount">${amount}</span>`;
+            remainingList.appendChild(li);
+        }
+    }
+
+    function updateBoughtList(name, amount) {
+        const existingItem = Array.from(boughtList.children).find(item => item.querySelector('span').textContent === name);
+        if (existingItem) {
+            existingItem.querySelector('.amount').textContent = amount;
+        } else {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${name}</span><span class="amount">${amount}</span>`;
+            boughtList.appendChild(li);
+        }
+    }
+
+    function removeFromList(list, name) {
+        const existingItem = Array.from(list.children).find(item => item.querySelector('span').textContent === name);
+        if (existingItem) {
+            existingItem.remove();
+        }
     }
 });
