@@ -1,207 +1,227 @@
 body {
-	font-family: Arial, sans-serif;
-	background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
 }
 
 .container {
-	width: 80%;
-	margin: 20px auto;
-	background-color: white;
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	display: flex;
-	flex-direction: column;
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 .input-section {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 10px;
-	width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 .input-section input {
-	width: 80%;
-	padding: 5px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	font-size: 14px;
+    width: 80%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 .input-section button {
-	padding: 5px 15px;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 14px;
+    padding: 5px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .input-section button:hover {
-	background-color: #0056b3;
+    background-color: #0056b3;
+}
+
+.input-section button:hover::after {
+    background-color: #007bff;
 }
 
 .main-content {
-	display: flex;
-	gap: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 .list-section {
-	flex: 2;
+    flex: 2;
 }
 
 .summary-section {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 li {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px;
-	border-bottom: 1px solid #ccc;
-	margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
 }
 
 li.bought {
-	text-decoration: line-through;
+    text-decoration: none;
 }
 
 .button-group {
-	display: flex;
-	align-items: center;
-	gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 button {
-	padding: 5px 10px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	position: relative;
-	/* Required for the tooltip */
+    padding: 5px 10px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 button.buy {
-	background-color: #28a745;
-	color: white;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
 }
 
 button.delete {
-	background-color: #dc3545;
-	color: white;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
 }
 
 button.increase,
 button.decrease {
-	background-color: #ffc107;
-	color: white;
+    background-color: #ffc107;
+    color: white;
 }
 
 .summary-section h3 {
-	margin: 0 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 .summary-section ul {
-	background-color: #fff;
-	padding: 10px;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .summary-section li {
-	margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .amount {
-	margin: 0 10px;
+    margin: 0 10px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #ffc107;
 }
 
 .badge {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	background-color: darkviolet;
-	color: white;
-	padding: 10px 20px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-	transition: transform 0.5s, background-color 0.5s;
-	transform: translateY(0);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: darkviolet;
+    color: white;
+    padding: 10px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: transform 0.5s, background-color 0.5s;
+    transform: translateY(0);
 }
 
 .badge:hover {
-	transform: translateY(-50px);
-	background-color: purple;
+    transform: translateY(-50px);
+    background-color: purple;
 }
 
 .badge:hover::after {
-	content: "Roman Malynovskyi";
-	display: block;
-	margin-top: 5px;
+    content: "Roman Malynovskyi";
+    display: block;
+    margin-top: 5px;
 }
 
 @media print {
-	.badge {
-		background-color: white;
-		border: 2px solid darkviolet;
-		color: black;
-	}
+    .badge {
+        background-color: white;
+        border: 2px solid darkviolet;
+        color: black;
+    }
 
-	.badge::after {
-		content: "Roman Malynovskyi";
-	}
+    .badge::after {
+        content: "Roman Malynovskyi";
+    }
 }
 
 button:hover::after {
-	content: attr(data-tooltip);
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%) translateY(10px);
-	background-color: darkviolet;
-	color: white;
-	padding: 5px;
-	border-radius: 5px;
-	white-space: nowrap;
-	transition: opacity 0.3s, transform 0.3s;
-	opacity: 1;
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: darkviolet;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 1;
 }
 
 button::after {
-	content: attr(data-tooltip);
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%) translateY(20px);
-	background-color: darkviolet;
-	color: white;
-	padding: 5px;
-	border-radius: 5px;
-	white-space: nowrap;
-	opacity: 0;
-	pointer-events: none;
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: darkviolet;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+}
+
+input.readonly {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input.readonly:focus {
+    outline: none;
+    cursor: text;
 }
 
 /* Media query for responsive columns */
 @media (max-width: 500px) {
-	.main-content {
-		flex-direction: column;
-	}
+    .main-content {
+        flex-direction: column;
+    }
 
-	.list-section,
-	.summary-section {
-		width: 100%;
-	}
+    .list-section,
+    .summary-section {
+        width: 100%;
+    }
 }

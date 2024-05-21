@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function addItem(name) {
-        const existingItem = Array.from(toBuyList.children).find(item => item.querySelector('span').textContent === name);
+        const existingItem = Array.from(toBuyList.children).find(item => item.querySelector('input').value === name);
 
         if (existingItem) {
             // Update the amount of the existing item
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Create a new item if it doesn't exist
             const li = document.createElement('li');
             li.innerHTML = `
-                <span>${name}</span>
+                <input type="text" value="${name}" readonly class="readonly" />
                 <div class="button-group">
                     <button class="decrease" data-tooltip="Зменшити кількість">-</button>
                     <span class="amount">1</span>
@@ -47,6 +47,26 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             toBuyList.appendChild(li);
             updateRemainingList(name, 1);
+
+            // Make item name editable on click
+            const inputField = li.querySelector('input');
+            inputField.addEventListener('click', () => {
+                inputField.removeAttribute('readonly');
+                inputField.classList.remove('readonly');
+                inputField.focus();
+            });
+
+            // Save item name on blur or enter key press
+            inputField.addEventListener('blur', () => {
+                inputField.setAttribute('readonly', true);
+                inputField.classList.add('readonly');
+                saveItems();
+            });
+            inputField.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    inputField.blur();
+                }
+            });
 
             // Increase button functionality
             li.querySelector('.increase').addEventListener('click', () => {
@@ -72,12 +92,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.querySelector('.delete').style.display = 'inline-block';
                     updateRemainingList(name, parseInt(li.querySelector('.amount').textContent));
                     removeFromList(boughtList, name);
+                    li.querySelector('.increase').style.display = 'inline-block';
+                    li.querySelector('.decrease').style.display = 'inline-block';
                 } else {
                     li.classList.add('bought');
-                    li.querySelector('.buy').textContent = 'Не куплено';
+                    li.querySelector('.buy').textContent = 'Not done';
                     li.querySelector('.delete').style.display = 'none';
                     removeFromList(remainingList, name);
                     updateBoughtList(name, parseInt(li.querySelector('.amount').textContent));
+                    li.querySelector('.increase').style.display = 'none';
+                    li.querySelector('.decrease').style.display = 'none';
                 }
                 saveItems();
             });
@@ -138,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         toBuyList.querySelectorAll('li').forEach(li => {
             items.toBuy.push({
-                name: li.querySelector('span').textContent,
+                name: li.querySelector('input').value,
                 amount: parseInt(li.querySelector('.amount').textContent),
                 bought: li.classList.contains('bought')
             });
@@ -171,19 +195,41 @@ document.addEventListener('DOMContentLoaded', () => {
         items.toBuy.forEach(item => {
             const li = document.createElement('li');
             li.innerHTML = `
-                <span>${item.name}</span>
+                <input type="text" value="${item.name}" readonly class="readonly" />
                 <div class="button-group">
                     <button class="decrease" data-tooltip="Зменшити кількість">-</button>
                     <span class="amount">${item.amount}</span>
                     <button class="increase" data-tooltip="Збільшити кількість">+</button>
-                    <button class="buy" data-tooltip="${item.bought ? 'Позначити як не куплено' : 'Позначити як куплено'}">${item.bought ? 'Не куплено' : 'Куплено'}</button>
+                    <button class="buy" data-tooltip="${item.bought ? 'Позначити як не куплено' : 'Позначити як куплено'}">${item.bought ? 'Not done' : 'Куплено'}</button>
                     <button class="delete" data-tooltip="Видалити елемент" style="${item.bought ? 'display: none;' : ''}">×</button>
                 </div>
             `;
             if (item.bought) {
                 li.classList.add('bought');
+                li.querySelector('.increase').style.display = 'none';
+                li.querySelector('.decrease').style.display = 'none';
             }
             toBuyList.appendChild(li);
+
+            // Make item name editable on click
+            const inputField = li.querySelector('input');
+            inputField.addEventListener('click', () => {
+                inputField.removeAttribute('readonly');
+                inputField.classList.remove('readonly');
+                inputField.focus();
+            });
+
+            // Save item name on blur or enter key press
+            inputField.addEventListener('blur', () => {
+                inputField.setAttribute('readonly', true);
+                inputField.classList.add('readonly');
+                saveItems();
+            });
+            inputField.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    inputField.blur();
+                }
+            });
 
             // Increase button functionality
             li.querySelector('.increase').addEventListener('click', () => {
@@ -210,13 +256,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.querySelector('.delete').style.display = 'inline-block';
                     updateRemainingList(item.name, parseInt(li.querySelector('.amount').textContent));
                     removeFromList(boughtList, item.name);
+                    li.querySelector('.increase').style.display = 'inline-block';
+                    li.querySelector('.decrease').style.display = 'inline-block';
                 } else {
                     li.classList.add('bought');
-                    li.querySelector('.buy').textContent = 'Не куплено';
+                    li.querySelector('.buy').textContent = 'Not done';
                     li.querySelector('.buy').setAttribute('data-tooltip', 'Позначити як не куплено');
                     li.querySelector('.delete').style.display = 'none';
                     removeFromList(remainingList, item.name);
                     updateBoughtList(item.name, parseInt(li.querySelector('.amount').textContent));
+                    li.querySelector('.increase').style.display = 'none';
+                    li.querySelector('.decrease').style.display = 'none';
                 }
                 saveItems();
             });
