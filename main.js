@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.querySelector('.decrease').style.display = 'inline-block';
                 } else {
                     li.classList.add('bought');
-                    li.querySelector('.buy').textContent = 'Not done';
+                    li.querySelector('.buy').textContent = 'не куплено';
                     li.querySelector('.delete').style.display = 'none';
                     removeFromList(remainingList, name);
                     updateBoughtList(name, parseInt(li.querySelector('.amount').textContent));
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="decrease" data-tooltip="Зменшити кількість">-</button>
                     <span class="amount">${item.amount}</span>
                     <button class="increase" data-tooltip="Збільшити кількість">+</button>
-                    <button class="buy" data-tooltip="${item.bought ? 'Позначити як не куплено' : 'Позначити як куплено'}">${item.bought ? 'Not done' : 'Куплено'}</button>
+                    <button class="buy" data-tooltip="${item.bought ? 'Позначити як не куплено' : 'Позначити як куплено'}">${item.bought ? 'не куплено' : 'Куплено'}</button>
                     <button class="delete" data-tooltip="Видалити елемент" style="${item.bought ? 'display: none;' : ''}">×</button>
                 </div>
             `;
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.querySelector('.decrease').style.display = 'inline-block';
                 } else {
                     li.classList.add('bought');
-                    li.querySelector('.buy').textContent = 'Not done';
+                    li.querySelector('.buy').textContent = 'не куплено';
                     li.querySelector('.buy').setAttribute('data-tooltip', 'Позначити як не куплено');
                     li.querySelector('.delete').style.display = 'none';
                     removeFromList(remainingList, item.name);

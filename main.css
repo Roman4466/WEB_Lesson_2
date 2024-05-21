@@ -37,6 +37,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .input-section button:hover {
@@ -94,7 +95,7 @@ button {
     border-radius: 50%;
     cursor: pointer;
     position: relative;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button.buy {
@@ -109,9 +110,13 @@ button.delete {
     border-radius: 5px;
 }
 
-button.increase,
+button.increase {
+    background-color: green;
+    color: white;
+}
+
 button.decrease {
-    background-color: #ffc107;
+    background-color: red;
     color: white;
 }
 
@@ -132,9 +137,9 @@ button.decrease {
 
 .amount {
     margin: 0 10px;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: #ffc107;
+    padding: 7px;
+    border-radius: 2px;
+    background-color: lightgray;
 }
 
 .badge {
