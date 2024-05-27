@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const remainingList = document.getElementById('remaining-list');
     const boughtList = document.getElementById('bought-list');
 
-    // Load items from localStorage
-    loadItems();
+    // Initialize with 3 items
+    addItem('Помідори');
+    addItem('Печиво');
+    addItem('Сир');
 
     // Add event listener for the 'Add' button
     addItemButton.addEventListener('click', () => {
@@ -14,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (itemName) {
             addItem(itemName);
             itemNameInput.value = '';
+            itemNameInput.focus();
         }
     });
 
