@@ -80,7 +80,7 @@ li {
 }
 
 li.bought {
-    text-decoration: none;
+    text-decoration: line-through;
 }
 
 .button-group {
@@ -140,6 +140,8 @@ button.decrease {
     padding: 7px;
     border-radius: 2px;
     background-color: lightgray;
+    min-width: 30px; /* Ensure the amount has a minimum width */
+    text-align: center; /* Center the text inside the amount */
 }
 
 .badge {
@@ -159,7 +161,7 @@ button.decrease {
 
 .badge:hover {
     transform: translateY(-50px);
-    background-color: purple;
+    background-color: blue;
 }
 
 .badge:hover::after {
@@ -176,7 +178,7 @@ button.decrease {
     }
 
     .badge::after {
-        content: "Roman Malynovskyi";
+        content: "Created by: Roman Malynovskyi";
     }
 }
 
@@ -217,6 +219,50 @@ input.readonly {
 input.readonly:focus {
     outline: none;
     cursor: text;
+}
+
+/* Specific styling for the remaining and bought list items to be in a row */
+.remaining ul,
+.bought ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.remaining li,
+.bought li {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    flex: 1 1 auto; /* Flex-grow, flex-shrink, flex-basis */
+    min-width: 100px; /* Minimum width to ensure items are not too small */
+}
+
+.remaining .amount,
+.bought .amount {
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    margin-left: 10px;
+    min-width: 30px;
+    min-height: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-section .amount {
+    background-color: lightgray;
+    color: black;
+    border-radius: 2px;
+    min-width: 30px; /* Ensure the amount has a minimum width */
+    min-height: auto; /* Ensure the height is not forced to be a circle */
+    text-align: center; /* Center the text inside the amount */
+    display: inline-block; /* Display inline-block for non-rounded amounts */
 }
 
 /* Media query for responsive columns */
