@@ -5,10 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const remainingList = document.getElementById('remaining-list');
     const boughtList = document.getElementById('bought-list');
 
-    // Initialize with 3 items
-    addItem('Помідори');
-    addItem('Печиво');
-    addItem('Сир');
+    // Load items from localStorage or initialize with 3 items
+    const items = JSON.parse(localStorage.getItem('items'));
+    if (!items || items.toBuy.length === 0) {
+        addItem('Помідори');
+        addItem('Печиво');
+        addItem('Сир');
+    } else {
+        loadItems();
+    }
 
     // Add event listener for the 'Add' button
     addItemButton.addEventListener('click', () => {

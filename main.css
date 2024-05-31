@@ -16,7 +16,7 @@ body {
 
 .input-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     margin-bottom: 10px;
     width: 100%;
 }
@@ -87,6 +87,7 @@ li.bought {
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center; /* Center the button group horizontally */
 }
 
 button {
