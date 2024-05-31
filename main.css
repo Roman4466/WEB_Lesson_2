@@ -267,7 +267,7 @@ input.readonly:focus {
 }
 
 /* Media query for responsive columns */
-@media (max-width: 500px) {
+@media (max-width: 800px) {
     .main-content {
         flex-direction: column;
     }

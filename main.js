@@ -40,13 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const amount = existingItem.querySelector('.amount');
             amount.textContent = parseInt(amount.textContent) + 1;
             updateRemainingList(name, parseInt(amount.textContent));
+            existingItem.querySelector('.decrease').disabled = false;
+            existingItem.querySelector('.decrease').style.backgroundColor = 'red';
         } else {
             // Create a new item if it doesn't exist
             const li = document.createElement('li');
             li.innerHTML = `
                 <input type="text" value="${name}" readonly class="readonly" />
                 <div class="button-group">
-                    <button class="decrease" data-tooltip="Зменшити кількість">-</button>
+                    <button class="decrease" data-tooltip="Зменшити кількість" disabled style="background-color: lightpink;">-</button>
                     <span class="amount">1</span>
                     <button class="increase" data-tooltip="Збільшити кількість">+</button>
                     <button class="buy" data-tooltip="Позначити як куплено">Куплено</button>
@@ -81,6 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const amount = li.querySelector('.amount');
                 amount.textContent = parseInt(amount.textContent) + 1;
                 updateRemainingList(name, parseInt(amount.textContent));
+                if (parseInt(amount.textContent) > 1) {
+                    li.querySelector('.decrease').disabled = false;
+                    li.querySelector('.decrease').style.backgroundColor = 'red';
+                }
             });
 
             // Decrease button functionality
@@ -89,6 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (parseInt(amount.textContent) > 1) {
                     amount.textContent = parseInt(amount.textContent) - 1;
                     updateRemainingList(name, parseInt(amount.textContent));
+                    if (parseInt(amount.textContent) === 1) {
+                        li.querySelector('.decrease').disabled = true;
+                        li.querySelector('.decrease').style.backgroundColor = 'lightpink';
+                    }
                 }
             });
 
@@ -205,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.innerHTML = `
                 <input type="text" value="${item.name}" readonly class="readonly" />
                 <div class="button-group">
-                    <button class="decrease" data-tooltip="Зменшити кількість">-</button>
+                    <button class="decrease" data-tooltip="Зменшити кількість" ${item.amount === 1 ? 'disabled' : ''} style="${item.amount === 1 ? 'background-color: lightpink;' : 'background-color: red;'}">-</button>
                     <span class="amount">${item.amount}</span>
                     <button class="increase" data-tooltip="Збільшити кількість">+</button>
                     <button class="buy" data-tooltip="${item.bought ? 'Позначити як не куплено' : 'Позначити як куплено'}">${item.bought ? 'не куплено' : 'Куплено'}</button>
@@ -244,6 +254,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const amount = li.querySelector('.amount');
                 amount.textContent = parseInt(amount.textContent) + 1;
                 updateRemainingList(item.name, parseInt(amount.textContent));
+                if (parseInt(amount.textContent) > 1) {
+                    li.querySelector('.decrease').disabled = false;
+                    li.querySelector('.decrease').style.backgroundColor = 'red';
+                }
             });
 
             // Decrease button functionality
@@ -252,6 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (parseInt(amount.textContent) > 1) {
                     amount.textContent = parseInt(amount.textContent) - 1;
                     updateRemainingList(item.name, parseInt(amount.textContent));
+                    if (parseInt(amount.textContent) === 1) {
+                        li.querySelector('.decrease').disabled = true;
+                        li.querySelector('.decrease').style.backgroundColor = 'lightpink';
+                    }
                 }
             });
 
